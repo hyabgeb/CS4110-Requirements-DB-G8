@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Requirements Spreadsheet</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>Requirements Spreadsheet</h1>
+    <p><a href="/form">Add New Requirement</a></p>
+      <!-- Sort By Date Added-->
+      <form method="POST" action="{{ url_for('sort_by_date') }}">
+          <input type="hidden" name="order"
+                value="{{ 'ASC' if order == 'DESC' else 'DESC' }}">
+          <button type="submit">
+              Sort by Date
+              {% if order == 'DESC' %}⬇️{% else %}⬆️{% endif %}
+          </button>
+      </form>
+
+      <!-- Sort By Requirements-->
+      <form method="POST" action="{{ url_for('sort_by_req') }}">
+          <input type="hidden" name="order"
+                value="{{ 'ASC' if order == 'DESC' else 'DESC' }}">
+          <button type="submit">
+              Sort by Requirement Number
+              {% if order == 'DESC' %}⬇️{% else %}⬆️{% endif %}
+          </button>
+      </form>
+
+  <!-- Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Requirements ID</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Spearhead</th>
+            <th>Stakeholder</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td>{{ r['id'] }}</td>
+            <td>{{ r['requirements_id'] }}</td>
+            <td>{{ r['date'] }}</td>
+            <td>{{ r['description'] }}</td>
+            <td>{{ r['spearhead'] }}</td>
+            <td>{{ r['stakeholder'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Requirement Intake</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>Requirement Intake Form</h1>
+
+    <form action="/submit" method="post"><form action="{{ url_for('submit') }}" method="POST">
+      <label>Requirements ID
+        <input name="requirements_id" placeholder="REQ-001" required>
+      </label>
+
+      <label>Date
+        <input type="date" name="date" required>
+      </label>
+
+      <label>Requirement Description
+        <textarea name="description" rows="4" required></textarea>
+      </label>
+
+      <label>Spearhead
+        <input name="spearhead" required>
+      </label>
+
+      <label>Stakeholder
+        <input name="stakeholder" required>
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p><a href="/sheet">View Spreadsheet</a></p>
+  </main>
+</body>
+</html>
